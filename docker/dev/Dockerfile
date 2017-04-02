@@ -12,8 +12,10 @@ COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
-
 COPY src /application
 
 WORKDIR /application
+
+ENTRYPOINT ["entrypoint.sh"]
+
+CMD ["python", "manage.py", "test", "--noinput"]
