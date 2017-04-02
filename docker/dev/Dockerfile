@@ -1,0 +1,19 @@
+FROM ubuntu:16.04
+MAINTAINER Raju Dawadi <rajudawadinp@gmail.com>
+
+RUN apt-get update && \
+    apt-get install -qy python-virtualenv python-dev
+
+RUN virtualenv /venv && \
+    . /venv/bin/activate && \
+    pip install pip --upgrade
+
+COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["entrypoint.sh"]
+
+COPY src /application
+
+WORKDIR /application
