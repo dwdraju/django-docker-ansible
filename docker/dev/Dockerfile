@@ -8,6 +8,9 @@ RUN virtualenv /venv && \
     . /venv/bin/activate && \
     pip install pip --upgrade
 
+# Build cache
+VOLUME /build
+
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod +x /usr/local/bin/entrypoint.sh

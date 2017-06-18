@@ -2,6 +2,9 @@
 
 . /venv/bin/activate
 
-pip install -r requirements.txt
+# Download requirements and build cache
+pip download -d /build -r requirements_test.txt --no-input
+
+pip install --no-index -f /build -r requirements_test.txt
 
 exec $@
